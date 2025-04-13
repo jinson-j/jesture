@@ -60,7 +60,9 @@ def generate_prompt():
     global current_prompt
     response = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=["Generate a simple, one-sentence drawing prompt The question should be fun, extremely simple, and easy to draw in 30 seconds. Some sample questions are: 'Draw a cat', 'Draw a house', 'Draw a tree', 'Draw a car', 'Draw a dog', 'Draw a flower', 'Draw a fish', 'Draw a bird', 'Draw a sun', 'Draw a moon'"])
+        contents=["Generate a simple, one-sentence drawing prompt The question should be fun, extremely simple, and easy to draw in 30 seconds. " + 
+                  "Some sample questions are: 'Draw a cat', 'Draw a house', 'Draw a tree', 'Draw a car', 'Draw a dog', 'Draw a flower', " +
+                  "'Draw a fish', 'Draw a bird', 'Draw a sun', 'Draw a moon'"])
     current_prompt = response.text.strip()
 
 def grade_drawings():
