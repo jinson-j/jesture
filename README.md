@@ -57,8 +57,6 @@ python main.py --mode multi
 
 - **G**: Make the robot guess what you've drawn 
 
-- **Q**: Quit 
-
 ### Multiplayer Mode
 
 - **SPACE**: Start a new drawing battle 
