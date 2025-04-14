@@ -11,7 +11,7 @@ import PIL.Image
 from utilities import wrap_text, get_fitting_font_size
 
 # Initialize Gemini API
-client = genai.Client(api_key='AIzaSyACcJEw3QRm-FzMbedC9VedoctSpud5znU')
+client = genai.Client(api_key='INPUT KEY HERE')
 
 # MediaPipe setup
 model_path = "gesture_recognizer.task" 
