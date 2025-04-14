@@ -11,7 +11,7 @@ import PIL.Image
 from utilities import wrap_text, get_fitting_font_size
 
 # Initialize Gemini API
-client = genai.Client(api_key='INPUT KEY HERE')
+client = genai.Client(api_key='AIzaSyACcJEw3QRm-FzMbedC9VedoctSpud5znU')
 
 # MediaPipe setup
 model_path = "gesture_recognizer.task" 
@@ -60,9 +60,7 @@ def generate_prompt():
     global current_prompt
     response = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=["Generate a simple, one-sentence drawing prompt The question should be fun, extremely simple, and easy to draw in 30 seconds. " + 
-                  "Some sample questions are: 'Draw a cat', 'Draw a house', 'Draw a tree', 'Draw a car', 'Draw a dog', 'Draw a flower', " +
-                  "'Draw a fish', 'Draw a bird', 'Draw a sun', 'Draw a moon'"])
+        contents=["Generate a drawing prompt. Be creative. Keep the prompt short and simple."])
     current_prompt = response.text.strip()
 
 def grade_drawings():
@@ -314,13 +312,17 @@ def run_multiplayer_mode(drawing_time=30):
                 rl.draw_text(f"{current_prompt}", 20, 10, 30, rl.BLACK)
                 rl.draw_text(f"{int(time_left)}", window_width - 100, 20, 50, rl.RED if time_left < 10 else rl.BLACK)
             elif current_game_state == GameState.JUDGING:
-                rl.draw_rectangle(0, 0, window_width, 90, rl.LIGHTGRAY)
-                rl.draw_text("RESULTS", window_width//2 - 90, 10, 40, rl.BLACK)
-                rl.draw_text("Press R to play again!", window_width//2 - 100, 60, 20, rl.BLACK)
+                
                 
                 # Show results
                 result_box_width = window_width - 40
                 font_size, wrapped_lines = get_fitting_font_size(results_text, result_box_width, 400, 24)
+                
+                
+                rl.draw_rectangle(0, 0, window_width, 90 + 40 * len(wrapped_lines), rl.LIGHTGRAY)
+                rl.draw_text("RESULTS", window_width//2 - 90, 10, 40, rl.BLACK)
+                rl.draw_text("Press R to play again!", window_width//2 - 100, 60, 20, rl.BLACK)
+
                 y = 100
                 for line in wrapped_lines:
                     rl.draw_text(line.encode('utf-8'), 20, y, font_size, rl.BLACK)
