@@ -63,3 +63,5 @@ python main.py --mode multi
 
 - **R**: Play again 
 
+# Bitcamp 2025: Best Use of Gemini API
+
